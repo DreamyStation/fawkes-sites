@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FORNALHA · Hamburgueria na brasa · cardápio e pedido</title>
+<meta name="description" content="Hambúrguer na brasa, no pão, na mão. Monte seu pedido, veja o total e confirme.">
+<meta name="theme-color" content="#D62718">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Bricolage+Grotesque:wght@400;600;800&family=Yellowtail&display=swap">
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;-webkit-font-smoothing:antialiased;line-height:1.5}
+img{max-width:100%;height:auto;display:block}a{color:inherit}button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid currentColor;outline-offset:3px;border-radius:6px}
+.wrap{width:min(100% - 2*clamp(16px,5vw,40px),1080px);margin-inline:auto}
+.sr{position:absolute;left:-999px}
+.demo{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:8px 16px;font:600 13px/1.3 system-ui,sans-serif;background:#111;color:#fff;text-align:center}
+.demo a{color:#fff;text-underline-offset:3px}
+.selo-fawkes{display:inline-flex;align-items:center;gap:8px;font:700 13px system-ui,sans-serif;text-decoration:none;opacity:.85}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+:root{--verm:#D62718;--creme:#FCE4CC;--esc:#2B1A12;--brasa:#F28A1B}
+body{background:var(--creme);color:var(--esc);font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:18px;padding-bottom:96px}
+h1,h2,h3{font-family:"Anton",Impact,"Arial Narrow",sans-serif;font-weight:400;text-transform:uppercase;line-height:.96;margin:0}
+.topo{background:var(--verm);color:var(--creme);position:sticky;top:0;z-index:30;border-bottom:4px solid var(--esc)}.topo .wrap{display:flex;align-items:center;justify-content:space-between;padding-block:8px;gap:12px}.topo img{height:60px;width:auto}
+.topo nav{display:flex;gap:18px;font-weight:800}.topo nav a{text-decoration:none}
+.hero{background:var(--verm);color:var(--creme);padding-block:clamp(36px,7vw,84px) 0;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:end}
+.hero h1{font-size:clamp(3.2rem,11vw,8rem)}.hero h1 em{font:400 clamp(1.6rem,4.2vw,2.8rem) "Yellowtail",cursive;text-transform:none;color:var(--brasa);display:block;margin-bottom:6px}
+.hero p{font-size:1.2rem;max-width:30ch;margin:18px 0 26px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:10px 24px;border:3px solid var(--esc);background:var(--esc);color:var(--creme);font:800 1.05rem "Bricolage Grotesque";border-radius:999px;text-decoration:none;box-shadow:4px 4px 0 var(--brasa);transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--brasa)}.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--brasa)}
+.hero img{width:min(100%,360px);margin-left:auto}
+.xadrez{height:26px;background:repeating-conic-gradient(var(--esc) 0 25%,var(--creme) 0 50%) 0 0/26px 26px}
+.sec{padding-block:clamp(44px,6vw,84px)}.sec h2{font-size:clamp(2.4rem,6vw,4.4rem);color:var(--verm)}.sub{margin:8px 0 26px;max-width:46ch}
+.abas{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;position:sticky;top:70px;z-index:10;background:var(--creme);padding-block:10px}
+.aba{min-height:46px;padding:8px 20px;border:3px solid var(--esc);background:transparent;color:var(--esc);font-weight:800;border-radius:999px}.aba[aria-pressed=true]{background:var(--esc);color:var(--creme)}
+.itens{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.item{display:flex;flex-direction:column;gap:10px;background:#fff;border:3px solid var(--esc);border-radius:18px;padding:18px;box-shadow:6px 6px 0 var(--esc)}
+.item h3{font-size:1.6rem}.item p{margin:0;opacity:.8;font-size:.98rem;flex:1}.item .linha{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.preco{font:400 1.8rem "Anton";color:var(--verm)}
+.qtd{display:flex;align-items:center;gap:6px}.qtd button{width:44px;height:44px;border:3px solid var(--esc);background:var(--creme);border-radius:50%;font:800 1.4rem/1 "Bricolage Grotesque";color:var(--esc)}.qtd button:hover{background:var(--brasa)}
+.qtd output{min-width:28px;text-align:center;font-weight:800}
+.carrinho{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--esc);color:var(--creme);padding:12px clamp(16px,5vw,40px) calc(12px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;justify-content:space-between;gap:14px;border-top:4px solid var(--brasa)}
+.carrinho b{font:400 1.8rem "Anton"}.carrinho .btn{background:var(--verm);border-color:var(--verm);box-shadow:none}
+.modal{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.6);display:grid;place-items:end center}.modal[hidden]{display:none}
+.folha{width:min(100%,560px);max-height:92vh;overflow:auto;background:var(--creme);border:4px solid var(--esc);border-radius:22px 22px 0 0;padding:clamp(18px,4vw,28px)}
+.folha h3{font-size:2rem;color:var(--verm);margin-bottom:12px}.l2{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:2px dashed var(--esc)}
+.tg{display:flex;gap:8px;margin:14px 0}.tg button{flex:1;min-height:48px;border:3px solid var(--esc);background:transparent;font-weight:800;border-radius:12px;color:var(--esc)}.tg button[aria-pressed=true]{background:var(--esc);color:var(--creme)}
+.folha input[type=text]{width:100%;min-height:48px;padding:10px 14px;font:inherit;border:3px solid var(--esc);border-radius:12px;margin:6px 0 12px;background:#fff}
+.tot{display:flex;justify-content:space-between;font:400 2.2rem "Anton";margin:12px 0}.msg{white-space:pre-wrap;background:#fff;border:2px dashed var(--esc);padding:12px;border-radius:12px;font-size:.95rem}
+.rodape{background:var(--esc);color:var(--creme);padding-block:34px}.rodape .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}.rodape p{margin:0;opacity:.85}
+@media(max-width:820px){.hero .wrap{grid-template-columns:1fr}.hero img{order:-1;max-width:240px;margin:0 0 -4px}.topo nav{display:none}}
+</style>
+</head>
+<body>
+<div class="demo"><span>Site demonstrativo · projeto conceitual da Agência Fawkes. Marca, preços e contatos são fictícios.</span><a href="https://www.instagram.com/fawkes.dsg/" rel="noopener">@fawkes.dsg</a></div>
+<header class="topo"><div class="wrap"><img src="img/logo.png" alt="FORNALHA" width="62" height="72"><nav aria-label="Principal"><a href="#cardapio">Cardápio</a><a href="#onde">Onde</a></nav><a class="btn" href="#cardapio">Pedir agora</a></div></header>
+<main>
+<section class="hero"><div class="wrap">
+  <div><h1><em>na brasa, no pão, na mão</em>Hambúrguer de verdade.</h1><p>Carne na brasa, pão macio e molho da casa. Monte o pedido, veja o total e confirme em segundos.</p><a class="btn" href="#cardapio">Ver cardápio</a></div>
+  <img src="img/mascote.png" alt="Mascote da FORNALHA, um hambúrguer de boné e espátula, andando" width="360" height="420">
+</div><div class="xadrez" aria-hidden="true"></div></section>
+
+<section class="sec" id="cardapio"><div class="wrap">
+  <h2>Cardápio</h2><p class="sub">Toque no + para adicionar. O carrinho fica embaixo da tela.</p>
+  <div class="abas" id="abas" role="group" aria-label="Categorias"></div>
+  <div class="itens" id="itens"></div>
+</div></section>
+
+<section class="sec" id="onde" style="background:#fff"><div class="wrap">
+  <h2>Onde e quando</h2><p class="sub">Zona Norte, RJ · ter a dom, 18h às 23h30 · entrega em até 40 minutos.</p>
+</div></section>
+</main>
+<footer class="rodape"><div class="wrap"><p>FORNALHA · hamburgueria na brasa · Zona Norte, RJ</p><a class="selo-fawkes" href="https://www.instagram.com/fawkes.dsg/" rel="noopener" style="color:var(--creme)">Site feito pela Fawkes · @fawkes.dsg</a></div></footer>
+
+<div class="carrinho" id="carrinho"><div><span id="cq">0 itens</span><br><b id="ct">R$ 0</b></div><button class="btn" id="fin" type="button" disabled>Ver pedido</button></div>
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="mt"><div class="folha">
+  <h3 id="mt">Seu pedido</h3><div id="lista"></div>
+  <div class="tg" role="group" aria-label="Como receber"><button type="button" id="b-ent" aria-pressed="true">Entrega (+ R$ 6)</button><button type="button" id="b-ret" aria-pressed="false">Retirada</button></div>
+  <div class="tot"><span>Total</span><span id="tt">R$ 0</span></div>
+  <label for="nm">Seu nome</label><input id="nm" type="text" autocomplete="name" placeholder="Como te chamamos?">
+  <button class="btn" id="conf" type="button" style="width:100%">Confirmar pedido</button>
+  <div class="msg" id="msg" hidden></div>
+  <button class="btn" id="fecha" type="button" style="width:100%;margin-top:12px;background:transparent;color:var(--esc);box-shadow:none">Voltar ao cardápio</button>
+</div></div>
+<script>
+const brl=n=>'R$ '+n.toFixed(2).replace('.',',').replace(',00','');
+async function copiar(txt){try{await navigator.clipboard.writeText(txt);return true}catch(e){return false}}
+const hoje=new Date();const DIAS=['dom','seg','ter','qua','qui','sex','sáb'];
+function hash(s){let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))>>>0;return h}
+
+const MENU={'Burgers':[['Smash da casa','Dois smashes, queijo prato, cebola na chapa e molho da casa.',28],['Fornalha duplo','Dois blends na brasa, cheddar, picles e maionese defumada.',36],['Bacon na brasa','Blend 160 g, bacon crocante, cheddar e barbecue.',34],['Veggie brasa','Burger de grão-de-bico, rúcula, tomate e molho verde.',30]],
+ 'Acompanhamentos':[['Batata rústica','Porção para dividir, com alecrim e sal defumado.',16],['Onion rings','Anéis de cebola empanados, com molho barbecue.',18]],
+ 'Bebidas':[['Milk-shake','Chocolate, baunilha ou doce de leite. 400 ml.',18],['Suco natural','Laranja, limão ou maracujá. 300 ml.',9],['Refrigerante','Lata 350 ml.',6]]};
+const carr={};let cat=Object.keys(MENU)[0],entrega=true;const abas=document.getElementById('abas'),itens=document.getElementById('itens');
+function desenha(){abas.innerHTML='';Object.keys(MENU).forEach(c=>{const b=document.createElement('button');b.type='button';b.className='aba';b.textContent=c;b.setAttribute('aria-pressed',c===cat);b.onclick=()=>{cat=c;desenha()};abas.appendChild(b)});
+ itens.innerHTML='';MENU[cat].forEach(([n,d,p])=>{const q=carr[n]||0;const el=document.createElement('article');el.className='item';el.innerHTML=`<h3>${n}</h3><p>${d}</p><div class="linha"><span class="preco">${brl(p)}</span><div class="qtd"><button type="button" aria-label="Tirar ${n}">−</button><output aria-live="polite">${q}</output><button type="button" aria-label="Adicionar ${n}">+</button></div></div>`;
+  const [m,pl]=el.querySelectorAll('button');m.onclick=()=>{carr[n]=Math.max(0,(carr[n]||0)-1);if(!carr[n])delete carr[n];desenha();total()};pl.onclick=()=>{carr[n]=(carr[n]||0)+1;desenha();total()};itens.appendChild(el)})}
+const todos=Object.values(MENU).flat();const preco=n=>todos.find(x=>x[0]===n)[2];
+function total(){const q=Object.values(carr).reduce((a,b)=>a+b,0);const t=Object.entries(carr).reduce((a,[n,k])=>a+preco(n)*k,0);document.getElementById('cq').textContent=q+(q===1?' item':' itens');document.getElementById('ct').textContent=brl(t);document.getElementById('fin').disabled=!q;return t}
+desenha();total();
+const modal=document.getElementById('modal');
+function resumo(){const sub=total();const taxa=entrega?6:0;document.getElementById('lista').innerHTML=Object.entries(carr).map(([n,k])=>`<div class="l2"><span>${k}× ${n}</span><span>${brl(preco(n)*k)}</span></div>`).join('')+(entrega?'<div class="l2"><span>Taxa de entrega</span><span>R$ 6</span></div>':'');document.getElementById('tt').textContent=brl(sub+taxa);return sub+taxa}
+document.getElementById('fin').onclick=()=>{resumo();document.getElementById('msg').hidden=true;modal.hidden=false};
+document.getElementById('fecha').onclick=()=>{modal.hidden=true};modal.addEventListener('click',e=>{if(e.target===modal)modal.hidden=true});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.hidden=true});
+const be=document.getElementById('b-ent'),br=document.getElementById('b-ret');be.onclick=()=>{entrega=true;be.setAttribute('aria-pressed',true);br.setAttribute('aria-pressed',false);resumo()};br.onclick=()=>{entrega=false;br.setAttribute('aria-pressed',true);be.setAttribute('aria-pressed',false);resumo()};
+document.getElementById('conf').onclick=()=>{const t=resumo();const nome=document.getElementById('nm').value.trim();const msg=`Oi, FORNALHA! Aqui é ${nome||'um cliente'}. Meu pedido:\n`+Object.entries(carr).map(([n,k])=>`${k}× ${n}`).join('\n')+`\n${entrega?'Entrega (+ R$ 6)':'Retirada no balcão'}\nTotal: ${brl(t)}`;copiar(msg);const m=document.getElementById('msg');m.hidden=false;m.textContent=msg+'\n\nDemonstração: no site real, este botão abre o WhatsApp da hamburgueria com o pedido pronto.'};
+</script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NA RÉGUA · Barbearia · agende seu horário</title>
+<meta name="description" content="Barbearia na Zona Norte. Escolha o serviço, o dia e o horário e veja o total antes de confirmar.">
+<meta name="theme-color" content="#111111">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&display=swap">
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;-webkit-font-smoothing:antialiased;line-height:1.5}
+img{max-width:100%;height:auto;display:block}a{color:inherit}button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid currentColor;outline-offset:3px;border-radius:6px}
+.wrap{width:min(100% - 2*clamp(16px,5vw,40px),1080px);margin-inline:auto}
+.sr{position:absolute;left:-999px}
+.demo{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:8px 16px;font:600 13px/1.3 system-ui,sans-serif;background:#111;color:#fff;text-align:center}
+.demo a{color:#fff;text-underline-offset:3px}
+.selo-fawkes{display:inline-flex;align-items:center;gap:8px;font:700 13px system-ui,sans-serif;text-decoration:none;opacity:.85}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+:root{--am:#F2B81B;--pr:#111;--osso:#F2EDE4;--verm:#D62718;--cinza:#2A2A2A}
+body{background:var(--pr);color:var(--osso);font-family:"Oswald","Arial Narrow",sans-serif;font-size:18px;letter-spacing:.01em}
+h1,h2,h3{font-family:"Anton",Impact,"Arial Narrow",sans-serif;font-weight:400;text-transform:uppercase;line-height:.95;margin:0}
+.regua{height:34px;background-color:var(--am);background-image:linear-gradient(var(--pr),var(--pr)),repeating-linear-gradient(90deg,var(--pr) 0 3px,transparent 3px 16px),repeating-linear-gradient(90deg,var(--pr) 0 4px,transparent 4px 80px);background-repeat:no-repeat;background-position:0 0,0 8px,0 8px;background-size:100% 8px,100% 12px,100% 26px}
+.topo{background:var(--am);color:var(--pr);position:sticky;top:0;z-index:20;border-bottom:4px solid var(--pr)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;padding-block:10px;gap:12px}
+.topo img{height:44px;width:auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:10px 22px;border:3px solid var(--pr);background:var(--pr);color:var(--am);font:700 17px "Oswald";letter-spacing:.06em;text-transform:uppercase;text-decoration:none;box-shadow:4px 4px 0 var(--verm);transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--verm)}.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--verm)}
+.btn--am{background:var(--am);color:var(--pr);border-color:var(--am);box-shadow:4px 4px 0 var(--osso)}
+.hero{background:var(--am);color:var(--pr);padding-block:clamp(36px,7vw,80px) 0}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:end}
+.hero h1{font-size:clamp(3.2rem,11vw,8rem)}.hero p{font-size:1.25rem;max-width:30ch;margin:18px 0 26px;font-weight:500}
+.hero img{width:min(100%,460px);margin-left:auto;margin-bottom:26px}
+.sec{padding-block:clamp(48px,7vw,96px)}
+.sec h2{font-size:clamp(2.4rem,6vw,4.4rem);color:var(--am);margin-bottom:8px}.sub{opacity:.8;margin:0 0 28px;max-width:46ch}
+.agenda{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:start}
+.painel{background:var(--cinza);border:3px solid var(--am);padding:clamp(18px,3vw,30px)}
+.painel h3{font-size:1.5rem;color:var(--am);margin-bottom:14px}
+.serv{display:flex;flex-direction:column;gap:8px}
+.serv label{display:flex;align-items:center;gap:12px;min-height:52px;padding:10px 14px;border:2px solid #444;cursor:pointer;transition:border-color .15s,background .15s}
+.serv label:has(input:checked){border-color:var(--am);background:#3a3216}
+.serv input{width:22px;height:22px;accent-color:var(--am)}.serv .n{flex:1;font-weight:600;text-transform:uppercase}.serv .t{opacity:.7;font-size:.9rem}.serv .p{font:400 1.4rem "Anton";color:var(--am)}
+.dias{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.dia{min-height:62px;border:2px solid #444;background:transparent;color:var(--osso);padding:6px;text-transform:uppercase;font-weight:600;line-height:1.1}
+.dia b{display:block;font:400 1.6rem "Anton"}.dia[aria-pressed=true]{background:var(--am);color:var(--pr);border-color:var(--am)}.dia:disabled{opacity:.35;text-decoration:line-through;cursor:not-allowed}
+.horas{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:8px;margin-top:14px}
+.hora{min-height:46px;border:2px solid #444;background:transparent;color:var(--osso);font-weight:600}.hora[aria-pressed=true]{background:var(--am);color:var(--pr);border-color:var(--am)}.hora:disabled{opacity:.3;text-decoration:line-through;cursor:not-allowed}
+.resumo{position:sticky;top:84px}.linha{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dashed #555}
+.total{display:flex;justify-content:space-between;align-items:baseline;font:400 2.4rem "Anton";color:var(--am);margin:14px 0}
+.promo{color:var(--am);font-weight:600;min-height:1.4em}
+input[type=text]{width:100%;min-height:48px;padding:10px 14px;font:inherit;background:var(--pr);color:var(--osso);border:2px solid #555;margin:6px 0 14px}
+.recibo{margin-top:16px;padding:14px;background:var(--pr);border:2px dashed var(--am);white-space:pre-wrap;font-size:.95rem}
+.cartao{background:var(--am);color:var(--pr);padding:clamp(20px,4vw,36px);border:4px solid var(--pr);box-shadow:8px 8px 0 var(--verm);max-width:640px}
+.cartao h3{font-size:2.2rem}.carimbos{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:18px 0}
+.carimbo{aspect-ratio:1;border:3px solid var(--pr);background:transparent;font:400 1.6rem "Anton";color:var(--pr);display:grid;place-items:center}.carimbo[aria-pressed=true]{background:var(--pr);color:var(--am)}
+.tabela{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;max-width:760px}.tabela .linha{border-color:#555;font-size:1.15rem;text-transform:uppercase}
+.rodape{border-top:4px solid var(--am);padding-block:36px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center}.rodape p{margin:0;opacity:.8}
+@media(max-width:820px){.hero .wrap{grid-template-columns:1fr}.hero img{order:-1;max-width:300px;margin:0 0 4px}.dias{grid-template-columns:repeat(3,1fr)}.agenda{grid-template-columns:1fr}.resumo{position:static}.tabela{grid-template-columns:1fr}.topo .btn{min-height:42px;padding:6px 14px;font-size:15px}}
+</style>
+</head>
+<body>
+<div class="demo"><span>Site demonstrativo · projeto conceitual da Agência Fawkes. Marca, preços e contatos são fictícios.</span><a href="https://www.instagram.com/fawkes.dsg/" rel="noopener">@fawkes.dsg</a></div>
+<header class="topo"><div class="wrap"><img src="img/logo.png" alt="NA RÉGUA Barbearia" width="120" height="96"><a class="btn" href="#agenda">Marcar horário</a></div></header>
+<main>
+<section class="hero"><div class="wrap">
+  <div><h1>Corte na régua.<br>Todo dia.</h1><p>Barbearia na Zona Norte. Escolha o serviço, o dia e o horário. Sem fila e sem ligação.</p><a class="btn" href="#agenda">Marcar meu horário</a></div>
+  <img src="img/logo.png" alt="NA RÉGUA Barbearia, desde 2026" width="460" height="370">
+</div><div class="regua" aria-hidden="true"></div></section>
+
+<section class="sec" id="agenda"><div class="wrap">
+  <h2>Marque seu horário</h2><p class="sub">Seg a sáb, 9h às 20h. Escolha o que vai fazer, o dia e a hora. O total aparece na hora.</p>
+  <div class="agenda">
+    <div class="painel">
+      <h3>1 · O que vai fazer?</h3>
+      <div class="serv" id="serv"></div>
+      <h3 style="margin-top:26px">2 · Qual dia?</h3><div class="dias" id="dias"></div>
+      <h3 style="margin-top:26px">3 · Qual horário?</h3><div class="horas" id="horas" aria-live="polite"></div>
+    </div>
+    <aside class="painel resumo" aria-label="Resumo do agendamento">
+      <h3>Seu horário</h3>
+      <div id="linhas"></div>
+      <p class="promo" id="promo"></p>
+      <div class="total"><span>Total</span><span id="total">R$ 0</span></div>
+      <label for="nome">Seu nome</label><input id="nome" type="text" autocomplete="name" placeholder="Como te chamamos?">
+      <button class="btn btn--am" id="conf" type="button" style="width:100%">Confirmar horário</button>
+      <div class="recibo" id="recibo" role="status" hidden></div>
+    </aside>
+  </div>
+</div></section>
+
+<section class="sec" style="background:#181818"><div class="wrap">
+  <h2>Cartão fidelidade</h2><p class="sub">A cada corte, uma tesoura. O 10º é por nossa conta. Toque para carimbar e ver como funciona.</p>
+  <div class="cartao"><h3>Fica na régua</h3><div class="carimbos" id="carimbos"></div><p id="fid" style="margin:0;font-weight:600">0 de 10 cortes</p></div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <h2>Tabela de preços</h2><p class="sub">Combo corte + barba por R$ 50.</p>
+  <div class="tabela" id="tabela"></div>
+</div></section>
+</main>
+<footer class="wrap rodape"><p>NA RÉGUA · Zona Norte, RJ · seg a sáb, 9h às 20h</p><a class="selo-fawkes" href="https://www.instagram.com/fawkes.dsg/" rel="noopener">Site feito pela Fawkes · @fawkes.dsg</a></footer>
+<script>
+const brl=n=>'R$ '+n.toFixed(2).replace('.',',').replace(',00','');
+async function copiar(txt){try{await navigator.clipboard.writeText(txt);return true}catch(e){return false}}
+const hoje=new Date();const DIAS=['dom','seg','ter','qua','qui','sex','sáb'];
+function hash(s){let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))>>>0;return h}
+
+const S=[['Corte',35,30],['Barba',25,20],['Pezinho',15,10],['Sobrancelha',10,10],['Pigmentação',30,40]];
+const serv=document.getElementById('serv'),tab=document.getElementById('tabela');
+S.forEach(([n,p,t],i)=>{serv.insertAdjacentHTML('beforeend',`<label><input type="checkbox" value="${i}"${i===0?' checked':''}><span class="n">${n}</span><span class="t">${t} min</span><span class="p">${brl(p)}</span></label>`);
+ tab.insertAdjacentHTML('beforeend',`<div class="linha"><span>${n}</span><span>${brl(p)}</span></div>`)});
+let dia=null,hora=null;
+const diasEl=document.getElementById('dias'),horasEl=document.getElementById('horas');
+for(let i=0,k=0;k<6;i++){const d=new Date(hoje);d.setDate(hoje.getDate()+i);const dom=d.getDay()===0;if(dom){continue}
+ const b=document.createElement('button');b.type='button';b.className='dia';b.setAttribute('aria-pressed','false');b.dataset.v=d.toISOString().slice(0,10);
+ b.innerHTML=`${DIAS[d.getDay()]}<b>${String(d.getDate()).padStart(2,'0')}</b>`;b.setAttribute('aria-label',d.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'}));
+ b.onclick=()=>{dia=b.dataset.v;hora=null;[...diasEl.children].forEach(x=>x.setAttribute('aria-pressed',x===b));montaHoras();atualiza()};diasEl.appendChild(b);k++}
+function montaHoras(){horasEl.innerHTML='';if(!dia){horasEl.innerHTML='<p style="opacity:.7;margin:0;grid-column:1/-1">Escolha um dia para ver os horários.</p>';return}
+ for(let h=9*60;h<20*60;h+=30){const t=String(Math.floor(h/60)).padStart(2,'0')+':'+String(h%60).padStart(2,'0');const b=document.createElement('button');b.type='button';b.className='hora';b.textContent=t;b.setAttribute('aria-pressed','false');
+  const agora=new Date();const passou=dia===agora.toISOString().slice(0,10)&&h<=agora.getHours()*60+agora.getMinutes()+30;b.disabled=passou||hash(dia+t)%100<28;b.onclick=()=>{hora=t;[...horasEl.children].forEach(x=>x.setAttribute('aria-pressed',x===b));atualiza()};horasEl.appendChild(b)}}
+montaHoras();
+function sel(){return [...serv.querySelectorAll('input:checked')].map(i=>S[+i.value])}
+function atualiza(){const s=sel();let tot=s.reduce((a,x)=>a+x[1],0);const nomes=s.map(x=>x[0]);let promo='';
+ if(nomes.includes('Corte')&&nomes.includes('Barba')){tot-=10;promo='Combo corte + barba: você economiza R$ 10.'}
+ const min=s.reduce((a,x)=>a+x[2],0);const L=document.getElementById('linhas');
+ L.innerHTML=s.map(x=>`<div class="linha"><span>${x[0]}</span><span>${brl(x[1])}</span></div>`).join('')+(s.length?`<div class="linha"><span>Duração</span><span>${min} min</span></div>`:'<p style="opacity:.7">Escolha pelo menos um serviço.</p>')+`<div class="linha"><span>Quando</span><span>${dia&&hora?new Date(dia+'T12:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'})+' às '+hora:'escolha dia e hora'}</span></div>`;
+ document.getElementById('promo').textContent=promo;document.getElementById('total').textContent=brl(tot);return {s,tot,min}}
+serv.addEventListener('change',atualiza);atualiza();
+document.getElementById('conf').onclick=()=>{const r=document.getElementById('recibo');const {s,tot}=atualiza();const nome=document.getElementById('nome').value.trim();
+ if(!s.length||!dia||!hora){r.hidden=false;r.textContent='Escolha o serviço, o dia e o horário para confirmar.';return}
+ const msg=`Oi, NA RÉGUA! Aqui é ${nome||'um cliente'}. Quero marcar ${s.map(x=>x[0].toLowerCase()).join(' + ')} dia ${new Date(dia+'T12:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'})} às ${hora}. Total ${brl(tot)}.`;
+ copiar(msg);r.hidden=false;r.textContent=msg;const aviso=document.createElement('div');aviso.style.cssText='margin-top:10px;opacity:.75';aviso.textContent='Demonstração: no site real, este botão abre o WhatsApp da barbearia com essa mensagem pronta.';r.appendChild(aviso)};
+const car=document.getElementById('carimbos'),fid=document.getElementById('fid');
+for(let i=1;i<=10;i++){const b=document.createElement('button');b.type='button';b.className='carimbo';b.setAttribute('aria-pressed','false');b.textContent=i===10?'10º':'✂';b.setAttribute('aria-label','Carimbo '+i);
+ b.onclick=()=>{const todos=[...car.children];const idx=todos.indexOf(b);todos.forEach((x,j)=>x.setAttribute('aria-pressed',j<=idx));fid.textContent=idx===9?'O 10º corte é por nossa conta!':(idx+1)+' de 10 cortes'};car.appendChild(b)}
+</script>
+</body>
+</html>

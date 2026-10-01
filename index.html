@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fawkes · sites de uma tela, teste ao vivo</title>
+<meta name="description" content="Cinco sites de demonstração da Agência Fawkes. Escolha serviço, monte pedido, marque horário. Tudo funciona no celular.">
+<meta name="theme-color" content="#E8271C">
+<link rel="icon" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Rubik:wght@400;500;700;800&display=swap">
+<style>
+:root{--verm:#E8271C;--creme:#FFF1DC;--tinta:#1A1414;--m:clamp(18px,5vw,48px)}
+*{box-sizing:border-box}body{margin:0;background:var(--creme);color:var(--tinta);font:18px/1.55 "Rubik",system-ui,sans-serif}
+img{max-width:100%;display:block}a{color:inherit}:focus-visible{outline:3px solid var(--tinta);outline-offset:3px;border-radius:6px}
+header{background:var(--verm);border-bottom:4px solid var(--tinta);padding:12px var(--m)}header img{height:40px;width:auto}
+.hero{background:var(--verm);color:var(--creme);padding:clamp(36px,7vw,80px) var(--m) clamp(40px,6vw,72px)}
+h1,h2{font-family:"Anton",Impact,"Arial Narrow",sans-serif;font-weight:400;text-transform:uppercase;line-height:.97;margin:0}
+.hero h1{font-size:clamp(2.8rem,9vw,6rem);max-width:12ch}.hero h1 span{color:var(--tinta)}.hero p{max-width:38ch;font-size:1.2rem;margin:18px 0 0}
+.wrap{width:min(100%,1080px);margin-inline:auto}main{padding:clamp(40px,6vw,80px) var(--m)}
+.grade{list-style:none;padding:0;margin:28px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px}
+.card{display:flex;flex-direction:column;background:#fff;border:3px solid var(--tinta);border-radius:20px;overflow:hidden;box-shadow:8px 8px 0 var(--tinta);text-decoration:none;transition:transform .15s}.card:hover{transform:translateY(-4px)}
+.card img{aspect-ratio:500/520;object-fit:cover;object-position:top;border-bottom:3px solid var(--tinta);width:100%}
+.card div{padding:16px 18px 20px;display:flex;flex-direction:column;gap:4px;flex:1}.card b{font:400 1.5rem "Anton";text-transform:uppercase}.card small{opacity:.8}.card span{margin-top:auto;padding-top:10px;font-weight:800;color:var(--verm)}
+h2{font-size:clamp(2.2rem,5.5vw,3.6rem)}h2 em{font-style:normal;color:var(--verm)}
+.nota{margin:30px 0 0;padding:18px 20px;border:3px dashed var(--tinta);border-radius:16px;max-width:60ch}.nota a{font-weight:800}
+footer{background:var(--tinta);color:var(--creme);padding:34px var(--m);text-align:center}footer p{margin:0 0 6px;opacity:.9}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header><img src="img/lockup_vermelho.png" alt="Fawkes" width="210" height="40"></header>
+<section class="hero"><div class="wrap">
+  <h1>Seu negócio em <span>uma tela.</span></h1>
+  <p>Cinco sites de demonstração. Abra no celular e teste: marcar horário, montar pedido, escolher o plano. Tudo funciona de verdade.</p>
+</div></section>
+<main><div class="wrap">
+  <h2>Teste <em>ao vivo</em></h2>
+  <ul class="grade">
+    <li><a class="card" href="naregua/"><img src="img/thumb_naregua.jpg" alt="Site da NA RÉGUA, barbearia" loading="lazy"><div><b>NA RÉGUA</b><small>Barbearia · agenda online com horários e total</small><span>Abrir o site →</span></div></a></li>
+    <li><a class="card" href="fornalha/"><img src="img/thumb_fornalha.jpg" alt="Site da FORNALHA, hamburgueria" loading="lazy"><div><b>FORNALHA</b><small>Hamburgueria · cardápio com carrinho e entrega</small><span>Abrir o site →</span></div></a></li>
+    <li><a class="card" href="baga/"><img src="img/thumb_baga.jpg" alt="Site da BAGA, açaí" loading="lazy"><div><b>BAGA</b><small>Açaí · monte o copo e veja o desenho</small><span>Abrir o site →</span></div></a></li>
+    <li><a class="card" href="comendobem/"><img src="img/thumb_comendobem.jpg" alt="Site da Comendo Bem, marmita fit" loading="lazy"><div><b>Comendo Bem</b><small>Marmita fit · monte a semana com calorias</small><span>Abrir o site →</span></div></a></li>
+    <li><a class="card" href="fawkes/"><img src="img/thumb_fawkes.jpg" alt="Site da Fawkes" loading="lazy"><div><b>Fawkes</b><small>Agência · serviços, portfólio e orçamento</small><span>Abrir o site →</span></div></a></li>
+  </ul>
+  <p class="nota"><b>São projetos conceituais.</b> Marcas, preços e contatos são fictícios. Quer um assim para o seu negócio? Peça um orçamento no direct: <a href="https://ig.me/m/fawkes.dsg" rel="noopener">@fawkes.dsg</a>.</p>
+</div></main>
+<footer><p>Fawkes · design e conteúdo pra comércio de bairro</p><p>Rio de Janeiro · Zona Norte</p></footer>
+</body>
+</html>

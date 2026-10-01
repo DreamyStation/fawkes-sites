@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comendo Bem · Marmita fit · monte sua semana</title>
+<meta name="description" content="Marmita fit entregue na sua porta. Escolha quantas, quais e os dias da semana, e veja o total e as calorias.">
+<meta name="theme-color" content="#0C8454">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Nunito:wght@400;600;800&display=swap">
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;-webkit-font-smoothing:antialiased;line-height:1.5}
+img{max-width:100%;height:auto;display:block}a{color:inherit}button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid currentColor;outline-offset:3px;border-radius:6px}
+.wrap{width:min(100% - 2*clamp(16px,5vw,40px),1080px);margin-inline:auto}
+.sr{position:absolute;left:-999px}
+.demo{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:8px 16px;font:600 13px/1.3 system-ui,sans-serif;background:#111;color:#fff;text-align:center}
+.demo a{color:#fff;text-underline-offset:3px}
+.selo-fawkes{display:inline-flex;align-items:center;gap:8px;font:700 13px system-ui,sans-serif;text-decoration:none;opacity:.85}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+:root{--verde:#0C8454;--verde2:#075C3B;--rosa:#FCE4E4;--creme:#FCFCE4;--rox:#6B2D5C}
+body{background:var(--creme);color:#143027;font-family:"Nunito",system-ui,sans-serif;font-size:18px}
+h1,h2,h3{font-family:"Alfa Slab One","Rockwell",Georgia,serif;font-weight:400;line-height:1.02;margin:0}
+.topo{background:var(--verde);color:var(--rosa);position:sticky;top:0;z-index:30;border-bottom:4px solid var(--verde2)}.topo .wrap{display:flex;align-items:center;justify-content:space-between;padding-block:8px;gap:12px}.topo img{height:46px;width:auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:10px 24px;border:3px solid var(--verde2);background:var(--rosa);color:var(--verde2);font:800 1.05rem "Nunito";border-radius:999px;text-decoration:none;box-shadow:4px 4px 0 var(--verde2);transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--verde2)}.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--verde2)}.btn--v{background:var(--verde);color:var(--rosa)}
+.hero{background:var(--verde);color:var(--rosa);padding-block:clamp(40px,7vw,90px)}.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,7vw,5rem);font-style:italic}.hero p{font-size:1.2rem;max-width:32ch;margin:18px 0 26px}.hero img{width:min(100%,340px);margin-left:auto;background:var(--rosa);border-radius:28px;padding:26px}
+.sec{padding-block:clamp(44px,6vw,84px)}.sec h2{font-size:clamp(2.2rem,5.6vw,3.8rem);color:var(--verde);font-style:italic}.sub{margin:8px 0 26px;max-width:46ch}
+.semana{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(20px,4vw,44px);align-items:start}
+.passo{background:#fff;border:3px solid var(--verde2);border-radius:20px;padding:clamp(16px,3vw,24px);margin-bottom:16px}.passo h3{font-size:1.4rem;margin-bottom:12px;color:var(--verde2)}
+.planos{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.planos label{display:flex;flex-direction:column;align-items:center;gap:2px;padding:14px 8px;border:3px solid var(--verde2);border-radius:16px;cursor:pointer;text-align:center;font-weight:800}
+.planos small{font-weight:600;opacity:.75}.planos input{position:absolute;opacity:0}.planos label:has(input:checked){background:var(--verde);color:var(--rosa)}.planos label:has(input:focus-visible){outline:3px solid var(--verde2);outline-offset:3px}
+.marm{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:2px dashed #b9d6c9}.marm:last-child{border:0}.marm .i{flex:1}.marm b{display:block}.marm small{opacity:.75}
+.qtd{display:flex;align-items:center;gap:6px}.qtd button{width:44px;height:44px;border:3px solid var(--verde2);background:var(--rosa);border-radius:50%;font:800 1.4rem/1 "Nunito";color:var(--verde2)}.qtd button:disabled{opacity:.35;cursor:not-allowed}.qtd output{min-width:26px;text-align:center;font-weight:800}
+.prog{height:14px;border-radius:99px;background:#d7eadf;overflow:hidden;margin:6px 0 4px}.prog i{display:block;height:100%;background:var(--verde);transition:width .2s}
+.dias{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.dias label{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:56px;border:3px solid var(--verde2);border-radius:14px;cursor:pointer;font-weight:800;text-transform:uppercase;font-size:.9rem}.dias input{position:absolute;opacity:0}.dias label:has(input:checked){background:var(--verde);color:var(--rosa)}.dias label:has(input:focus-visible){outline:3px solid var(--verde2);outline-offset:3px}
+.res{position:sticky;top:84px;background:var(--rosa);border:4px solid var(--verde2);border-radius:24px;padding:clamp(18px,3vw,26px);box-shadow:8px 8px 0 var(--verde2)}.res h3{font-size:1.6rem;color:var(--verde2);margin-bottom:10px}
+.l{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:2px dashed #cf9a9a}.tot{display:flex;justify-content:space-between;align-items:baseline;font:400 2.2rem "Alfa Slab One";color:var(--verde2);margin:12px 0}
+input[type=text]{width:100%;min-height:48px;padding:10px 14px;font:inherit;border:3px solid var(--verde2);border-radius:12px;margin:6px 0 12px;background:#fff}
+.msg{white-space:pre-wrap;background:#fff;border:2px dashed var(--verde2);padding:12px;border-radius:12px;font-size:.95rem;margin-top:14px}.alerta{color:var(--rox);font-weight:800;min-height:1.4em}
+.rodape{background:var(--verde2);color:var(--rosa);padding-block:34px}.rodape .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}.rodape p{margin:0;opacity:.9}
+@media(max-width:820px){.hero .wrap{grid-template-columns:1fr}.hero img{max-width:220px;margin:0}.semana{grid-template-columns:1fr}.res{position:static}}
+</style>
+</head>
+<body>
+<div class="demo"><span>Site demonstrativo · projeto conceitual da Agência Fawkes. Marca, preços e contatos são fictícios.</span><a href="https://www.instagram.com/fawkes.dsg/" rel="noopener">@fawkes.dsg</a></div>
+<header class="topo"><div class="wrap"><img src="img/logo.png" alt="Comendo Bem" width="92" height="46"><a class="btn" href="#semana">Montar minha semana</a></div></header>
+<main>
+<section class="hero"><div class="wrap">
+  <div><h1>Comer bem não dá trabalho.</h1><p>Marmita fit pronta, entregue na sua porta. Escolha quantas, quais e em que dias. A gente cuida do resto.</p><a class="btn" href="#semana">Montar minha semana</a></div>
+  <img src="img/logo_cor.png" alt="Logo da Comendo Bem" width="340" height="340">
+</div></section>
+
+<section class="sec" id="semana"><div class="wrap">
+  <h2>Monte sua semana</h2><p class="sub">Quanto mais marmitas, menor o preço de cada uma. Entrega nos dias que você escolher.</p>
+  <div class="semana">
+    <div>
+      <div class="passo"><h3>1 · Quantas marmitas?</h3><div class="planos" id="planos"></div></div>
+      <div class="passo"><h3>2 · Quais?</h3><div class="prog" aria-hidden="true"><i id="barra" style="width:0"></i></div><p id="falta" style="margin:0 0 6px;font-weight:800"></p><div id="marm"></div></div>
+      <div class="passo"><h3>3 · Quais dias de entrega?</h3><div class="dias" id="dias"></div></div>
+    </div>
+    <aside class="res" aria-label="Resumo da semana"><h3>Sua semana</h3><div id="linhas"></div><div class="tot"><span>Total</span><span id="tot">R$ 0</span></div><p class="alerta" id="alerta" role="status"></p>
+      <label for="nome">Seu nome</label><input id="nome" type="text" autocomplete="name" placeholder="Como te chamamos?"><button class="btn btn--v" id="conf" type="button" style="width:100%">Confirmar semana</button><div class="msg" id="msg" hidden></div></aside>
+  </div>
+</div></section>
+</main>
+<footer class="rodape"><div class="wrap"><p>Comendo Bem · marmita fit · entregas seg a sex, Zona Norte, RJ</p><a class="selo-fawkes" href="https://www.instagram.com/fawkes.dsg/" rel="noopener" style="color:var(--rosa)">Site feito pela Fawkes · @fawkes.dsg</a></div></footer>
+<script>
+const brl=n=>'R$ '+n.toFixed(2).replace('.',',').replace(',00','');
+async function copiar(txt){try{await navigator.clipboard.writeText(txt);return true}catch(e){return false}}
+const hoje=new Date();const DIAS=['dom','seg','ter','qua','qui','sex','sáb'];
+function hash(s){let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))>>>0;return h}
+
+const PLANOS=[[5,24],[10,21],[15,19]];
+const M=[['Frango grelhado','com batata-doce e brócolis',420],['Carne moída','com arroz integral e legumes',480],['Tilápia assada','com quinoa e abobrinha',390],['Tofu ao curry','com arroz integral e couve',410]];
+const q=M.map(()=>0);let plano=1;const planosEl=document.getElementById('planos'),marmEl=document.getElementById('marm'),diasEl=document.getElementById('dias');
+PLANOS.forEach(([n,p],i)=>planosEl.insertAdjacentHTML('beforeend',`<label><input type="radio" name="plano" value="${i}"${i===1?' checked':''}>${n} marmitas<small>${brl(p)} cada</small></label>`));
+['seg','ter','qua','qui','sex'].forEach((d,i)=>diasEl.insertAdjacentHTML('beforeend',`<label><input type="checkbox" name="dia" value="${d}"${i===0||i===2?' checked':''}>${d}</label>`));
+function lista(){marmEl.innerHTML='';M.forEach(([n,d,k],i)=>{const el=document.createElement('div');el.className='marm';el.innerHTML=`<div class="i"><b>${n}</b><small>${d} · ${k} kcal</small></div><div class="qtd"><button type="button" aria-label="Tirar ${n}">−</button><output>${q[i]}</output><button type="button" aria-label="Adicionar ${n}">+</button></div>`;
+ const [a,b]=el.querySelectorAll('button');a.onclick=()=>{q[i]=Math.max(0,q[i]-1);atualiza()};b.onclick=()=>{if(soma()<PLANOS[plano][0]){q[i]++;atualiza()}};marmEl.appendChild(el)})}
+const soma=()=>q.reduce((a,b)=>a+b,0);
+function atualiza(){const [N,P]=PLANOS[plano];while(soma()>N){const j=q.lastIndexOf(Math.max(...q));q[j]--}const s=soma();lista();
+ marmEl.querySelectorAll('.marm').forEach((el,i)=>{el.querySelectorAll('button')[1].disabled=s>=N});
+ document.getElementById('barra').style.width=(s/N*100)+'%';document.getElementById('falta').textContent=s===N?'Pronto: '+N+' marmitas escolhidas.':'Faltam '+(N-s)+' de '+N+' marmitas.';
+ const kcal=s?Math.round(q.reduce((a,x,i)=>a+x*M[i][2],0)/s):0;
+ document.getElementById('linhas').innerHTML=`<div class="l"><span>${N} marmitas × ${brl(P)}</span><span>${brl(N*P)}</span></div>`+M.map((m,i)=>q[i]?`<div class="l"><span>${q[i]}× ${m[0]}</span><span>${m[2]*q[i]} kcal</span></div>`:'').join('')+(s?`<div class="l"><span>Média por marmita</span><span>${kcal} kcal</span></div>`:'')+`<div class="l"><span>Entregas</span><span>${[...document.querySelectorAll('[name=dia]:checked')].map(d=>d.value).join(', ')||'escolha os dias'}</span></div>`;
+ document.getElementById('tot').textContent=brl(N*P)}
+document.getElementById('planos').addEventListener('change',e=>{plano=+e.target.value;atualiza()});document.getElementById('dias').addEventListener('change',atualiza);atualiza();
+document.getElementById('conf').onclick=()=>{const [N,P]=PLANOS[plano];const al=document.getElementById('alerta');const dias=[...document.querySelectorAll('[name=dia]:checked')].map(d=>d.value);
+ if(soma()<N){al.textContent='Escolha todas as '+N+' marmitas para confirmar.';return}if(!dias.length){al.textContent='Escolha pelo menos um dia de entrega.';return}al.textContent='';
+ const nome=document.getElementById('nome').value.trim();const msg=`Oi, Comendo Bem! Aqui é ${nome||'um cliente'}. Quero ${N} marmitas por semana: `+M.map((m,i)=>q[i]?q[i]+'× '+m[0].toLowerCase():'').filter(Boolean).join(', ')+`. Entregas: ${dias.join(', ')}. Total ${brl(N*P)}.`;copiar(msg);const m=document.getElementById('msg');m.hidden=false;m.textContent=msg+'\n\nDemonstração: no site real, este botão abre o WhatsApp com o pedido pronto.'};
+</script>
+</body>
+</html>

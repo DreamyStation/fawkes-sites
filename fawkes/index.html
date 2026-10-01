@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fawkes · design e conteúdo pra comércio de bairro</title>
+<meta name="description" content="Identidade visual, posts e stories para o seu comércio de bairro aparecer e vender. Peça seu orçamento pelo direct.">
+<meta name="theme-color" content="#E8271C">
+<link rel="icon" href="img/favicon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="topo" id="topo">
+  <a class="topo__logo" href="#inicio" aria-label="Fawkes, início"><img src="img/lockup_vermelho.png" alt="Fawkes" width="220" height="42"></a>
+  <nav class="topo__nav" aria-label="Principal">
+    <a href="#servicos">Serviços</a><a href="#portfolio">Portfólio</a><a href="#como">Como funciona</a>
+    <a class="btn btn--creme" href="#orcamento">Pedir orçamento</a>
+  </nav>
+</header>
+
+<main id="conteudo">
+
+<section class="hero" id="inicio">
+  <div class="hero__texto">
+    <p class="selo">Agência de design e conteúdo · Zona Norte, RJ</p>
+    <h1><span>Design e conteúdo</span><span>pra comércio</span><span class="h1__tinta">de bairro.</span></h1>
+    <p class="hero__sub">Logo, mascote, posts e stories no mesmo sistema, prontos pra postar. Sem enrolação e sem preço de agência grande.</p>
+    <div class="hero__acoes">
+      <a class="btn btn--tinta" href="#orcamento">Pedir orçamento no direct</a>
+      <a class="btn btn--linha" href="#portfolio">Ver marcas que criamos</a>
+    </div>
+  </div>
+  <figure class="hero__mascote"><img src="img/mascote_p8_acena.png" alt="Mascote da Fawkes, um falcão de óculos e moletom vermelho, acenando" width="460" height="530"></figure>
+</section>
+
+<div class="faixa" aria-hidden="true">
+  <div class="faixa__trilho"><span>identidade visual</span><span>posts</span><span>stories</span><span>mascote</span><span>embalagem</span><span>fachada</span><span>cardápio</span><span>identidade visual</span><span>posts</span><span>stories</span><span>mascote</span><span>embalagem</span><span>fachada</span><span>cardápio</span></div>
+</div>
+
+<section class="secao secao--creme" id="servicos">
+  <header class="secao__cab"><p class="rotulo">01 · O que a gente faz</p><h2>Tudo que leva o <em>nome</em> do seu negócio.</h2></header>
+  <ul class="cards">
+    <li class="card"><img src="img/cliente_baga.jpg" alt="" loading="lazy"><div><h3>Logo e identidade</h3><p>Mascote, cores e fontes da sua marca, do jeito que só o seu negócio tem.</p></div></li>
+    <li class="card"><img src="img/cliente_fornalha.jpg" alt="" loading="lazy"><div><h3>Posts e stories</h3><p>Conteúdo que faz o cliente pedir. Carrossel, promoção, cardápio e destaques.</p></div></li>
+    <li class="card"><img src="img/cliente_naregua.jpg" alt="" loading="lazy"><div><h3>Fachada e embalagem</h3><p>Sua marca na rua e na mão do cliente: placa, tabela de preços, sacola e uniforme.</p></div></li>
+  </ul>
+</section>
+
+<section class="secao secao--tinta" id="portfolio">
+  <header class="secao__cab"><p class="rotulo">02 · Portfólio</p><h2>Marcas que a gente <em>criou do zero.</em></h2><p class="secao__sub">Projetos conceituais: marca, preços e contatos são fictícios.</p></header>
+  <ul class="grade">
+    <li><img src="img/cliente_baga.jpg" alt="BAGA, marca de açaí, logo em roxo e lima" loading="lazy"><span>BAGA · açaí</span></li>
+    <li><img src="img/cliente_naregua.jpg" alt="NA RÉGUA, barbearia, logo amarelo e preto" loading="lazy"><span>NA RÉGUA · barbearia</span></li>
+    <li><img src="img/cliente_cb.jpg" alt="Comendo Bem, marmita fit, logo em verde" loading="lazy"><span>Comendo Bem · marmita fit</span></li>
+    <li><img src="img/cliente_fornalha.jpg" alt="FORNALHA, hamburgueria, logo vermelho sobre amarelo" loading="lazy"><span>FORNALHA · hamburgueria</span></li>
+  </ul>
+</section>
+
+<section class="secao secao--creme secao--mao" id="como">
+  <header class="secao__cab"><p class="rotulo">03 · Como funciona</p><h2>Três passos. <em>Sem enrolação.</em></h2></header>
+  <ol class="passos">
+    <li><span class="passos__n">01</span><div><h3>Você conta o que vende</h3><p>Uma conversa rápida pelo direct. Nada de formulário de 20 perguntas.</p></div></li>
+    <li><span class="passos__n">02</span><div><h3>A gente propõe</h3><p>Ideia, prazo e valor, tudo claro antes de começar.</p></div></li>
+    <li><span class="passos__n">03</span><div><h3>Você aprova, a gente entrega</h3><p>Logo, posts e stories prontos pra postar, com os arquivos na sua mão.</p></div></li>
+  </ol>
+</section>
+
+<section class="secao secao--vermelho" id="orcamento">
+  <div class="orc">
+    <div class="orc__texto">
+      <p class="rotulo rotulo--creme">04 · Orçamento</p>
+      <h2>Peça seu orçamento <em>no direct.</em></h2>
+      <p>Conta o que você vende e o que precisa. A gente monta a mensagem pra você e abre a conversa.</p>
+      <img class="orc__mascote" src="img/mascote_p5_megafone.png" alt="" width="260" loading="lazy">
+    </div>
+    <form class="form" id="form" novalidate>
+      <label for="nome">Nome do negócio</label>
+      <input id="nome" name="nome" type="text" autocomplete="organization" placeholder="Ex.: Barbearia do Zé" required>
+      <label for="tipo">O que você vende?</label>
+      <select id="tipo" name="tipo"><option>Comida e bebida</option><option>Beleza e barbearia</option><option>Loja de roupas ou acessórios</option><option>Serviços</option><option>Outro</option></select>
+      <fieldset><legend>O que você precisa?</legend>
+        <label class="chk"><input type="checkbox" name="n" value="logo e identidade"> Logo e identidade</label>
+        <label class="chk"><input type="checkbox" name="n" value="posts e stories" checked> Posts e stories</label>
+        <label class="chk"><input type="checkbox" name="n" value="fachada e embalagem"> Fachada e embalagem</label>
+      </fieldset>
+      <button class="btn btn--tinta btn--cheio" type="submit">Copiar mensagem e abrir o direct</button>
+      <p class="form__aviso" id="aviso" role="status" aria-live="polite"></p>
+      <p class="form__nota">Ao clicar, a mensagem é copiada e o Instagram abre. É só colar e enviar.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="rodape">
+  <img src="img/assinatura_dupla_creme.png" alt="Fawkes" width="360" loading="lazy">
+  <p>Design e conteúdo pra comércio de bairro · Rio de Janeiro, Zona Norte</p>
+  <p><a href="https://ig.me/m/fawkes.dsg" rel="noopener">@fawkes.dsg</a> · <a href="https://www.instagram.com/fawkes.dsg/" rel="noopener">Instagram</a></p>
+</footer>
+
+<a class="flutuante" href="#orcamento" aria-label="Pedir orçamento">Orçamento</a>
+<script src="script.js"></script>
+</body>
+</html>
