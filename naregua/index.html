@@ -137,5 +137,6 @@ const car=document.getElementById('carimbos'),fid=document.getElementById('fid')
 for(let i=1;i<=10;i++){const b=document.createElement('button');b.type='button';b.className='carimbo';b.setAttribute('aria-pressed','false');b.textContent=i===10?'10º':'✂';b.setAttribute('aria-label','Carimbo '+i);
  b.onclick=()=>{const todos=[...car.children];const idx=todos.indexOf(b);todos.forEach((x,j)=>x.setAttribute('aria-pressed',j<=idx));fid.textContent=idx===9?'O 10º corte é por nossa conta!':(idx+1)+' de 10 cortes'};car.appendChild(b)}
 </script>
+<script src="../pop.js" defer></script>
 </body>
 </html>

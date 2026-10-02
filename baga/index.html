@@ -104,5 +104,6 @@ function atualiza(){const e=estado();desenha(e.tam,e.base,e.tops);document.getEl
 document.querySelector('.monte').addEventListener('change',atualiza);atualiza();
 document.getElementById('conf').onclick=()=>{const e=estado();const nome=document.getElementById('nome').value.trim();const msg=`Oi, BAGA! Aqui é ${nome||'um cliente'}. Quero um copo de ${TAM[e.tam][0]}, base ${BASE[e.base][0].toLowerCase()}${e.tops.length?', com '+e.tops.map(k=>TOP[k][0].toLowerCase()).join(', '):''}. Total ${brl(e.preco)}.`;copiar(msg);const m=document.getElementById('msg');m.hidden=false;m.textContent=msg+'\n\nDemonstração: no site real, este botão abre o WhatsApp da loja com o pedido pronto.'};
 </script>
+<script src="../pop.js" defer></script>
 </body>
 </html>

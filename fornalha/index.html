@@ -109,5 +109,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.hidden=true});
 const be=document.getElementById('b-ent'),br=document.getElementById('b-ret');be.onclick=()=>{entrega=true;be.setAttribute('aria-pressed',true);br.setAttribute('aria-pressed',false);resumo()};br.onclick=()=>{entrega=false;br.setAttribute('aria-pressed',true);be.setAttribute('aria-pressed',false);resumo()};
 document.getElementById('conf').onclick=()=>{const t=resumo();const nome=document.getElementById('nm').value.trim();const msg=`Oi, FORNALHA! Aqui é ${nome||'um cliente'}. Meu pedido:\n`+Object.entries(carr).map(([n,k])=>`${k}× ${n}`).join('\n')+`\n${entrega?'Entrega (+ R$ 6)':'Retirada no balcão'}\nTotal: ${brl(t)}`;copiar(msg);const m=document.getElementById('msg');m.hidden=false;m.textContent=msg+'\n\nDemonstração: no site real, este botão abre o WhatsApp da hamburgueria com o pedido pronto.'};
 </script>
+<script src="../pop.js" defer></script>
 </body>
 </html>

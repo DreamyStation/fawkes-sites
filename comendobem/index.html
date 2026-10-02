@@ -93,5 +93,6 @@ document.getElementById('conf').onclick=()=>{const [N,P]=PLANOS[plano];const al=
  if(soma()<N){al.textContent='Escolha todas as '+N+' marmitas para confirmar.';return}if(!dias.length){al.textContent='Escolha pelo menos um dia de entrega.';return}al.textContent='';
  const nome=document.getElementById('nome').value.trim();const msg=`Oi, Comendo Bem! Aqui é ${nome||'um cliente'}. Quero ${N} marmitas por semana: `+M.map((m,i)=>q[i]?q[i]+'× '+m[0].toLowerCase():'').filter(Boolean).join(', ')+`. Entregas: ${dias.join(', ')}. Total ${brl(N*P)}.`;copiar(msg);const m=document.getElementById('msg');m.hidden=false;m.textContent=msg+'\n\nDemonstração: no site real, este botão abre o WhatsApp com o pedido pronto.'};
 </script>
+<script src="../pop.js" defer></script>
 </body>
 </html>
