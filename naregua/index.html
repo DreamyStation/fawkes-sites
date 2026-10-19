@@ -54,11 +54,19 @@ h1,h2,h3{font-family:"Anton",Impact,"Arial Narrow",sans-serif;font-weight:400;te
 input[type=text]{width:100%;min-height:48px;padding:10px 14px;font:inherit;background:var(--pr);color:var(--osso);border:2px solid #555;margin:6px 0 14px}
 .recibo{margin-top:16px;padding:14px;background:var(--pr);border:2px dashed var(--am);white-space:pre-wrap;font-size:.95rem}
 .cartao{background:var(--am);color:var(--pr);padding:clamp(20px,4vw,36px);border:4px solid var(--pr);box-shadow:8px 8px 0 var(--verm);max-width:640px}
-.cartao h3{font-size:2.2rem}.carimbos{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:18px 0}
-.carimbo{aspect-ratio:1;border:3px solid var(--pr);background:transparent;font:400 1.6rem "Anton";color:var(--pr);display:grid;place-items:center}.carimbo[aria-pressed=true]{background:var(--pr);color:var(--am)}
+.cartao h3{font-size:2.2rem}.carimbos{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(6px,2vw,10px);margin:18px 0}
+.carimbo{aspect-ratio:1;min-width:0;padding:0;border:3px solid var(--pr);background:transparent;font:400 1.6rem "Anton";color:var(--pr);display:grid;place-items:center}.carimbo[aria-pressed=true]{background:var(--pr);color:var(--am)}
 .tabela{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;max-width:760px}.tabela .linha{border-color:#555;font-size:1.15rem;text-transform:uppercase}
 .rodape{border-top:4px solid var(--am);padding-block:36px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center}.rodape p{margin:0;opacity:.8}
 @media(max-width:820px){.hero .wrap{grid-template-columns:1fr}.hero img{order:-1;max-width:300px;margin:0 0 4px}.dias{grid-template-columns:repeat(3,1fr)}.agenda{grid-template-columns:1fr}.resumo{position:static}.tabela{grid-template-columns:1fr}.topo .btn{min-height:42px;padding:6px 14px;font-size:15px}}
+</style>
+<style id="encaixe">
+/* encaixe de texto: títulos equilibrados, parágrafos sem palavra sozinha, nada estoura a coluna */
+h1,h2,h3,h4{text-wrap:balance;overflow-wrap:normal;word-break:normal;hyphens:manual}
+p,li,dd,figcaption,blockquote,summary,small,label,.sub,.nota,.desc,.tp{text-wrap:pretty;overflow-wrap:break-word}
+.btn,button,[role=button],[role=tab]{max-width:100%;text-wrap:balance;overflow-wrap:break-word}
+:where(div,section,article,aside,main,header,footer,nav,ul,ol,li,form,fieldset,figure,dl,dt,dd,p,h1,h2,h3,h4,span,label){min-width:0}
+img,svg,video,canvas{max-width:100%}
 </style>
 </head>
 <body>
@@ -138,5 +146,31 @@ for(let i=1;i<=10;i++){const b=document.createElement('button');b.type='button';
  b.onclick=()=>{const todos=[...car.children];const idx=todos.indexOf(b);todos.forEach((x,j)=>x.setAttribute('aria-pressed',j<=idx));fid.textContent=idx===9?'O 10º corte é por nossa conta!':(idx+1)+' de 10 cortes'};car.appendChild(b)}
 </script>
 <script src="../pop.js" defer></script>
+<script id="encaixe-js">
+/* encaixe de texto: se uma palavra de título não couber na coluna, reduz a fonte só o necessário (até 60%) e refaz ao redimensionar */
+(function(){
+  var Q='h1,h2,h3,.fit';
+  function amarrar(el){ /* as duas últimas palavras do título ficam juntas: nunca sobra uma palavra sozinha na última linha */
+    var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),last=null,n;
+    while((n=w.nextNode()))if(n.nodeValue.trim())last=n;
+    if(!last)return;
+    var v=last.nodeValue,novo=v.replace(/(\S+)\s+(\S+)(\s*)$/,'$1 $2$3');
+    if(novo!==v)last.nodeValue=novo;
+  }
+  function fit(){
+    var els=document.querySelectorAll(Q);
+    for(var i=0;i<els.length;i++){
+      var el=els[i];amarrar(el);el.style.removeProperty('font-size');
+      var fs=parseFloat(getComputedStyle(el).fontSize),min=fs*.6,n=0;
+      while(el.scrollWidth>el.clientWidth+1&&fs>min&&n++<40){fs-=.5;el.style.fontSize=fs+'px';}
+    }
+  }
+  var t;function later(){clearTimeout(t);t=setTimeout(fit,60);}
+  addEventListener('resize',later);addEventListener('load',later);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(later);
+  if(window.MutationObserver)new MutationObserver(later).observe(document.body,{childList:true,subtree:true,characterData:true,attributeFilter:['lang']});
+  window.encaixe=fit;fit();
+})();
+</script>
 </body>
 </html>

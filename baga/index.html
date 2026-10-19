@@ -47,6 +47,14 @@ input[type=text]{width:100%;min-height:48px;padding:10px 14px;font:inherit;borde
 .rodape{background:var(--esc);color:var(--creme);padding-block:34px}.rodape .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}.rodape p{margin:0;opacity:.85}
 @media(max-width:820px){.hero .wrap{grid-template-columns:1fr}.hero img{order:-1;max-width:220px;margin:0 0 -4px}.monte{grid-template-columns:1fr}.copo{position:static}}
 </style>
+<style id="encaixe">
+/* encaixe de texto: títulos equilibrados, parágrafos sem palavra sozinha, nada estoura a coluna */
+h1,h2,h3,h4{text-wrap:balance;overflow-wrap:normal;word-break:normal;hyphens:manual}
+p,li,dd,figcaption,blockquote,summary,small,label,.sub,.nota,.desc,.tp{text-wrap:pretty;overflow-wrap:break-word}
+.btn,button,[role=button],[role=tab]{max-width:100%;text-wrap:balance;overflow-wrap:break-word}
+:where(div,section,article,aside,main,header,footer,nav,ul,ol,li,form,fieldset,figure,dl,dt,dd,p,h1,h2,h3,h4,span,label){min-width:0}
+img,svg,video,canvas{max-width:100%}
+</style>
 </head>
 <body>
 <div class="demo"><span>Site demonstrativo · projeto conceitual da Agência Fawkes. Marca, preços e contatos são fictícios.</span><a href="https://www.instagram.com/fawkes.dsg/" rel="noopener">@fawkes.dsg</a></div>
@@ -105,5 +113,31 @@ document.querySelector('.monte').addEventListener('change',atualiza);atualiza();
 document.getElementById('conf').onclick=()=>{const e=estado();const nome=document.getElementById('nome').value.trim();const msg=`Oi, BAGA! Aqui é ${nome||'um cliente'}. Quero um copo de ${TAM[e.tam][0]}, base ${BASE[e.base][0].toLowerCase()}${e.tops.length?', com '+e.tops.map(k=>TOP[k][0].toLowerCase()).join(', '):''}. Total ${brl(e.preco)}.`;copiar(msg);const m=document.getElementById('msg');m.hidden=false;m.textContent=msg+'\n\nDemonstração: no site real, este botão abre o WhatsApp da loja com o pedido pronto.'};
 </script>
 <script src="../pop.js" defer></script>
+<script id="encaixe-js">
+/* encaixe de texto: se uma palavra de título não couber na coluna, reduz a fonte só o necessário (até 60%) e refaz ao redimensionar */
+(function(){
+  var Q='h1,h2,h3,.fit';
+  function amarrar(el){ /* as duas últimas palavras do título ficam juntas: nunca sobra uma palavra sozinha na última linha */
+    var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),last=null,n;
+    while((n=w.nextNode()))if(n.nodeValue.trim())last=n;
+    if(!last)return;
+    var v=last.nodeValue,novo=v.replace(/(\S+)\s+(\S+)(\s*)$/,'$1 $2$3');
+    if(novo!==v)last.nodeValue=novo;
+  }
+  function fit(){
+    var els=document.querySelectorAll(Q);
+    for(var i=0;i<els.length;i++){
+      var el=els[i];amarrar(el);el.style.removeProperty('font-size');
+      var fs=parseFloat(getComputedStyle(el).fontSize),min=fs*.6,n=0;
+      while(el.scrollWidth>el.clientWidth+1&&fs>min&&n++<40){fs-=.5;el.style.fontSize=fs+'px';}
+    }
+  }
+  var t;function later(){clearTimeout(t);t=setTimeout(fit,60);}
+  addEventListener('resize',later);addEventListener('load',later);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(later);
+  if(window.MutationObserver)new MutationObserver(later).observe(document.body,{childList:true,subtree:true,characterData:true,attributeFilter:['lang']});
+  window.encaixe=fit;fit();
+})();
+</script>
 </body>
 </html>
