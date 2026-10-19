@@ -61,6 +61,18 @@ p,li,dd,figcaption,blockquote,summary,small,label,.sub,.nota,.desc,.tp{text-wrap
 :where(div,section,article,aside,main,header,footer,nav,ul,ol,li,form,fieldset,figure,dl,dt,dd,p,h1,h2,h3,h4,span,label){min-width:0}
 img,svg,video,canvas{max-width:100%}
 </style>
+<style id="sb">
+/*sb:ini*/
+:root{--sb-t:#F0CFAA;--sb-h:#D62718;--sb-hv:#A81E12;--sb-ed:#2B1A12}
+::-webkit-scrollbar{width:16px;height:16px}
+::-webkit-scrollbar-track{background:var(--sb-t);box-shadow:inset 2px 0 0 var(--sb-ed);}
+::-webkit-scrollbar-thumb{background:var(--sb-h);border-radius:999px;border:4px solid var(--sb-t);min-height:48px;min-width:48px}
+::-webkit-scrollbar-thumb:hover{background:var(--sb-hv)}
+::-webkit-scrollbar-thumb:active{background:var(--sb-hv)}
+::-webkit-scrollbar-corner{background:var(--sb-t)}
+@supports not selector(::-webkit-scrollbar){html{scrollbar-width:auto;scrollbar-color:var(--sb-h) var(--sb-t)}}
+/*sb:fim*/
+</style>
 </head>
 <body>
 <div class="demo"><span>Site demonstrativo · projeto conceitual da Agência Fawkes. Marca, preços e contatos são fictícios.</span><a href="https://www.instagram.com/fawkes.dsg/" rel="noopener">@fawkes.dsg</a></div>
@@ -81,7 +93,7 @@ img,svg,video,canvas{max-width:100%}
   <h2>Onde e quando</h2><p class="sub">Zona Norte, RJ · ter a dom, 18h às 23h30 · entrega em até 40 minutos.</p>
 </div></section>
 </main>
-<footer class="rodape"><div class="wrap"><p>FORNALHA · hamburgueria na brasa · Zona Norte, RJ</p><a class="selo-fawkes" href="https://www.instagram.com/fawkes.dsg/" rel="noopener" style="color:var(--creme)">Site feito pela Fawkes · @fawkes.dsg</a></div><p class="direitos" style="flex:1 1 100%;width:100%;max-width:74ch;margin:12px auto 0;padding:0 16px;font:500 .78rem/1.5 system-ui,sans-serif;text-align:center;opacity:.8;letter-spacing:0;text-transform:none">Este site e tudo o que há nele (design, textos, imagens, código e aplicativos) são obras protegidas pela Lei de Direitos Autorais (Lei 9.610/1998) e, no caso de programas de computador, pela Lei do Software (Lei 9.609/1998). É proibido copiar, reproduzir, redistribuir ou criar obras derivadas sem autorização por escrito do autor, Emerson Silva - DreamyStation. Marcas e logotipos de clientes pertencem aos seus titulares.</p></footer>
+<footer class="rodape"><div class="wrap"><p>FORNALHA · hamburgueria na brasa · Zona Norte, RJ</p><a class="selo-fawkes" href="https://www.instagram.com/fawkes.dsg/" rel="noopener" style="color:var(--creme)">Site feito por Emerson Silva, da Fawkes · @fawkes.dsg</a></div><p class="direitos" style="flex:1 1 100%;width:100%;max-width:74ch;margin:12px auto 0;padding:0 16px;font:500 .78rem/1.5 system-ui,sans-serif;text-align:center;opacity:.8;letter-spacing:0;text-transform:none">Este site e tudo o que há nele (design, textos, imagens, código e aplicativos) são obras protegidas pela Lei de Direitos Autorais (Lei 9.610/1998) e, no caso de programas de computador, pela Lei do Software (Lei 9.609/1998). É proibido copiar, reproduzir, redistribuir ou criar obras derivadas sem autorização por escrito do autor, Emerson Silva - DreamyStation. Marcas e logotipos de clientes pertencem aos seus titulares.</p></footer>
 
 <div class="carrinho" id="carrinho"><div><span id="cq">0 itens</span><br><b id="ct">R$ 0</b></div><button class="btn" id="fin" type="button" disabled>Ver pedido</button></div>
 <div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="mt"><div class="folha">

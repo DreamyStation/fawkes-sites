@@ -35,6 +35,18 @@ p,li,dd,figcaption,blockquote,summary,small,label,.sub,.nota,.desc,.tp{text-wrap
 :where(div,section,article,aside,main,header,footer,nav,ul,ol,li,form,fieldset,figure,dl,dt,dd,p,h1,h2,h3,h4,span,label){min-width:0}
 img,svg,video,canvas{max-width:100%}
 </style>
+<style id="sb">
+/*sb:ini*/
+:root{--sb-t:#F3DDBB;--sb-h:#E8271C;--sb-hv:#B91C14;--sb-ed:#1A1414}
+::-webkit-scrollbar{width:16px;height:16px}
+::-webkit-scrollbar-track{background:var(--sb-t);box-shadow:inset 2px 0 0 var(--sb-ed);}
+::-webkit-scrollbar-thumb{background:var(--sb-h);border-radius:999px;border:4px solid var(--sb-t);min-height:48px;min-width:48px}
+::-webkit-scrollbar-thumb:hover{background:var(--sb-hv)}
+::-webkit-scrollbar-thumb:active{background:var(--sb-hv)}
+::-webkit-scrollbar-corner{background:var(--sb-t)}
+@supports not selector(::-webkit-scrollbar){html{scrollbar-width:auto;scrollbar-color:var(--sb-h) var(--sb-t)}}
+/*sb:fim*/
+</style>
 </head>
 <body>
 <header><img src="img/lockup_vermelho.png" alt="Fawkes" width="210" height="40"></header>
@@ -54,7 +66,7 @@ img,svg,video,canvas{max-width:100%}
   </ul>
   <p class="nota"><b>São projetos conceituais.</b> Marcas, preços e contatos são fictícios. Quer um assim para o seu negócio? Peça um orçamento no direct: <a href="https://ig.me/m/fawkes.dsg" rel="noopener">@fawkes.dsg</a>.</p>
 </div></main>
-<footer><p>Fawkes · design e conteúdo pra comércio de bairro</p><p>Rio de Janeiro · atendimento online no Brasil todo</p><p class="direitos" style="flex:1 1 100%;width:100%;max-width:74ch;margin:12px auto 0;padding:0 16px;font:500 .78rem/1.5 system-ui,sans-serif;text-align:center;opacity:.8;letter-spacing:0;text-transform:none">Este site e tudo o que há nele (design, textos, imagens, código e aplicativos) são obras protegidas pela Lei de Direitos Autorais (Lei 9.610/1998) e, no caso de programas de computador, pela Lei do Software (Lei 9.609/1998). É proibido copiar, reproduzir, redistribuir ou criar obras derivadas sem autorização por escrito do autor, Emerson Silva - DreamyStation. Marcas e logotipos de clientes pertencem aos seus titulares.</p></footer>
+<footer><p>Fawkes · design e conteúdo pra comércio de bairro</p><p>Rio de Janeiro · atendimento online no Brasil todo</p><p>Criado por Emerson Silva · Fawkes</p><p class="direitos" style="flex:1 1 100%;width:100%;max-width:74ch;margin:12px auto 0;padding:0 16px;font:500 .78rem/1.5 system-ui,sans-serif;text-align:center;opacity:.8;letter-spacing:0;text-transform:none">Este site e tudo o que há nele (design, textos, imagens, código e aplicativos) são obras protegidas pela Lei de Direitos Autorais (Lei 9.610/1998) e, no caso de programas de computador, pela Lei do Software (Lei 9.609/1998). É proibido copiar, reproduzir, redistribuir ou criar obras derivadas sem autorização por escrito do autor, Emerson Silva - DreamyStation. Marcas e logotipos de clientes pertencem aos seus titulares.</p></footer>
 <script src="pop.js" defer></script>
 <script id="encaixe-js">
 /* encaixe de texto: se uma palavra de título não couber na coluna, reduz a fonte só o necessário (até 60%) e refaz ao redimensionar */
